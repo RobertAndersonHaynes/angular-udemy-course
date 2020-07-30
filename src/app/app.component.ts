@@ -3,24 +3,24 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: [`
-    .clicks {
-      color: white;
-    }
-  `]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  detailsClicked = false;
-  x = 1
-  clickLog = [];
+  serverElements = [{type: 'server', name: 'Testserver', content: 'Just a test'}];
 
-  onDetailsButtonClick() {
-    this.detailsClicked = !this.detailsClicked
-    this.clickLog.push(this.x);
-    this.x++
+  onServerAdded(serverData: {serverName: string, serverContent: string}) {
+    this.serverElements.push({
+      type: 'server',
+      name: serverData.serverName,
+      content: serverData.serverContent
+    });
   }
 
-  // getColor() {
-  //   return this.clickLog.length < 5 ? 'white' : 'blue'
-  // }
+  onBlueprintAdded(blueprintData: {serverName: string, serverContent: string}) {
+    this.serverElements.push({
+      type: 'blueprint',
+      name: blueprintData.serverName,
+      content: blueprintData.serverContent
+    });
+  }
 }

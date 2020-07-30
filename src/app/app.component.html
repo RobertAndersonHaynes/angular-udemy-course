@@ -1,14 +1,18 @@
-<h3>Hi from the AppComponent</h3>
-<hr>
-<!-- <app-servers></app-servers> -->
-<app-warning-alert></app-warning-alert>
-<app-success-alert></app-success-alert>
-<app-server></app-server>
-<button
-  class="btn btn-primary"
-  (click)="onDetailsButtonClick()">Display Details</button>
-<p *ngIf="detailsClicked">'Secret Password = tuna'</p>
-<div *ngFor="let click of clickLog; let i = index"
-[ngStyle]="{backgroundColor: i >= 5 ? 'blue' : 'white'}"
-[ngClass]="{clicks: i >= 5}">
-{{ click }}</div>
+<div class="container">
+  <app-cockpit
+  (serverCreated)="onServerAdded($event)"
+  (blueprintCreated)="onBlueprintAdded($event)"
+  ></app-cockpit>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-server-element *ngFor="let serverElement of serverElements"
+      [element]="serverElement">
+      <p>
+        <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+        <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+      </p>
+    </app-server-element>
+    </div>
+  </div>
+</div>
