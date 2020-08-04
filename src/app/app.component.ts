@@ -6,21 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  serverElements = [{type: 'server', name: 'Testserver', content: 'Just a test'}];
+  public even: number[] = [];
+  public odd: number[] = [];
 
-  onServerAdded(serverData: {serverName: string, serverContent: string}) {
-    this.serverElements.push({
-      type: 'server',
-      name: serverData.serverName,
-      content: serverData.serverContent
-    });
-  }
+  onStartClicked(counter: {count: number}) {
+    (counter.count % 2 === 0) ? this.even.push(counter.count) : this.odd.push(counter.count);
+    }
 
-  onBlueprintAdded(blueprintData: {serverName: string, serverContent: string}) {
-    this.serverElements.push({
-      type: 'blueprint',
-      name: blueprintData.serverName,
-      content: blueprintData.serverContent
-    });
-  }
-}
+  onEndClicked() {
+
+  };
+};
